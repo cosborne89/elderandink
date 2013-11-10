@@ -1,0 +1,29 @@
+<%= simple_form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :author, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
+  </div>
+  <div class="field">
+    <%= f.input :email, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
+  </div>
+  <div class="field">
+    <%= f.input :body, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
+  </div>
+  <div class="field">
+    <%= f.association :post, label_html: { class: 'label-block' } %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

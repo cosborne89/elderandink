@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tag.title %>
+</p>
+
+<p>
+  <strong>Banner image:</strong>
+  <%= @tag.banner_image %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tag.description %>
+</p>
+
+<p>
+  <strong>Posts:</strong>
+  <% @tag.posts.each do |post| %>
+    <ul>
+      <li><%= link_to post.title, post %></li>
+    </ul>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

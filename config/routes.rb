@@ -1,4 +1,14 @@
-Homeandheart::Application.routes.draw do
+Elderandink::Application.routes.draw do
+  resources :comments
+
+  resources :tags
+
+  resources :series
+
+  resources :categories
+
+  resources :posts
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   get "/auth/:provider/callback" => "sessions#create"

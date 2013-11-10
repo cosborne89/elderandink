@@ -1,0 +1,2 @@
+module PostsTagHelper
+end

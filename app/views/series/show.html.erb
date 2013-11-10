@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @series.title %>
+</p>
+
+<p>
+  <strong>Banner image:</strong>
+  <%= @series.banner_image %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @series.description %>
+</p>
+
+<p>
+  <strong>Posts:</strong>
+  <% @series.posts.each do |post| %>
+    <ul>
+      <li><%= link_to post.title, post %></li>
+    </ul>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_series_path(@series) %> |
+<%= link_to 'Back', series_index_path %>

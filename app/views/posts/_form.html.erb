@@ -1,0 +1,44 @@
+<%= simple_form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :title, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
+  </div>
+  <div class="field">
+    <%= f.input :body, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
+  </div>
+  <div class="field">
+    <%= f.input :published%>
+  </div>
+  <div class="field">
+    <%= f.input :published_date, label_html: { class: 'label-block' } %>
+  </div>
+  <div class="field">
+    <%= f.input :title_image, label_html: { class: 'label-block' } %>
+  </div>
+  <div class="field">
+    <%= f.association :tags, label_html: { class: 'label-block' } %>
+  </div>
+  <div class="field">
+    <%= f.association :category, label_html: { class: 'label-block' } %>
+  </div>
+  <div class="field">
+    <%= f.association :comments, label_html: { class: 'label-block' } %>
+  </div>
+  <div class="field">
+    <%= f.association :series, label_html: { class: 'label-block' } %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

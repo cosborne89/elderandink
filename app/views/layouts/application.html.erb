@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Home and Heart</title>
+  <title>Elder & Ink</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400,300" %>
+  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400,300|PT+Serif:400,700,400italic,700italic" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <div class="container">
     <div class="banner">
-        <h1>The Critical Few, Inc.</h1>
-        <p class="notice"><%= notice %></p>                                                                                                                                                                                                         
-        <p class="alert"><%= alert %></p> 
+        <h1><%= link_to "Elder & Ink", root_path %></h1>
+        <ul>
+            <% @categories.each do |category| %>
+                <li><%= link_to category.title, category %></li>
+            <% end %>
+        </ul>
+        <p id="notice"><%= notice %></p>
+        <p id="alert"><%= alert %></p> 
     </div>
     <div class="content">
         <%= yield %>
     </div>
     <div class="banner">
+    <ul>
+        <li><%= link_to "Home (admin nav)", root_path %></li>
+    </ul>
         <% if can? :manage, :all %>
             <ul>
             	<li><%= link_to current_user.username, user_path(current_user) %>'s Dashboard (is <%= current_user.role %>):</li>

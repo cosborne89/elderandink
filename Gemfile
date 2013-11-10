@@ -56,3 +56,9 @@ group :development, :test do
   #gem "rspec-rails"
   #gem 'cucumber-rails' cucumber-rails isn't good for rails 4 yet?
 end
+
+gem 'paperclip'
+gem 'ransack'
+gem 'simple_form'
+gem 'will_paginate'
+gem 'pg'

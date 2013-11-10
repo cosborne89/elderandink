@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require_tree
  */
 
 @import "bourbon";
@@ -16,13 +17,13 @@
 
 /*All other stylesheets must be imported after this one */
 
-* {
-    font-family: 'Open Sans', Verdana, sans-serif;
+*, p {
+    font-family: 'PT Serif', Georgiaserif;
     font-weight: 300;
 }
 
 div.container {
-  @include outer-container;
+    @include outer-container;
 }
 
 .blue_button {
