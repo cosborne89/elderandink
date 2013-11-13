@@ -18,14 +18,23 @@
 /*All other stylesheets must be imported after this one */
 
 *, p {
-    font-family: 'PT Serif', Georgiaserif;
+    font-family: 'PT Serif', Georgia, serif;
     font-weight: 300;
 }
 
-div.container {
+div.container, div.banner {
     @include outer-container;
 }
 
 .blue_button {
     @include button(simple, #0B7ABF);
+}
+
+.primary-content {
+	@include span-columns(8 of 12);
+}
+
+aside {
+	@include span-columns(3 of 12);
+	float: right;
 }

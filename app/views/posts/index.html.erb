@@ -1,35 +1,8 @@
-<% @posts.each do |post| %>
-  <div class="post-block" >
-    <div class="post-title" >
-      <h2><%= link_to post.title, post %></h2>
-    </div>
-    <div class="post-date" >
-      <%= post.published_date.to_formatted_s(:long_ordinal) %>
-    </div>
-    <div class="post-image" >
-      <%= post.title_image %>
-    </div>  
-    <div class="post-body" >
-      <%= post.body %>
-    </div>  
-    <div class="post-tags" >
-      Filed under 
-        <% post.tags.each do |tag| %><%= link_to tag.title, tag %><% if tag == post.tags.last %>.<% else %>, <% end %><% end %>
-    </div>  
-    <div class="post-category" >
-      Posted in <%= link_to post.category.title, post.category %>
-    </div>
-    <% if post.series %>
-      <div class="post-series" >
-        Part of the <%= link_to post.series.title, post.series %> series.
-      </div>
-    <% end %>
-    <div class="post-comments" >
-      <%= post.comments.count %> Comments
-    </div>  
-    <div class="edit-action" >
-      <%= link_to 'Edit', edit_post_path(post) %>
-    </div>  
-  </div>
-<% end %>
+<%= render "posts_container" %>
 <%= link_to 'New Post', new_post_path %>
+</div>
+<aside>
+    I'm Abbey, and this is my blog. I am out to change the world one cute, crafty or inspirational thing at a time.
+    <%= render "shared/search_container" %>
+</aside>
+<div class="post-trick">

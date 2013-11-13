@@ -4,12 +4,20 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @q = Post.search(params[:q])
+    @posts = @q.result(distinct: true)
+    @unpublished_posts = Post.unpublished
+  end
+
+  def search
+    index
+    render :index
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comment = @post.comments.build
   end
 
   # GET /posts/new
@@ -64,7 +72,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.unscoped.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,7 @@
+<div class="search-form" %>
+	<%= search_form_for @q, url: search_posts_path, html: { method: :post } do |f| %>
+	  <%= f.label :title_cont %>
+	  <%= f.text_field :title_cont %>
+	  <%= f.submit %>
+	<% end %>
+</div>

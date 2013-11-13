@@ -7,7 +7,12 @@ Elderandink::Application.routes.draw do
 
   resources :categories
 
-  resources :posts
+  resources :posts do
+    collection do
+      match 'search' => 'posts#search', via: [:get, :post], as: :search
+    end
+    resources :comments
+  end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   

@@ -28,10 +28,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to Post.find(@comment.post_id), notice: 'Thanks for commenting!' }
         format.json { render action: 'show', status: :created, location: @comment }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to Post.find(@comment.post_id) || root_path } #may fail if @comment did not have a post_id so failing to root_path
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +42,10 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to Post.find(@comment.post_id), notice: 'Thanks for commenting!' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render redirect_to Post.find(@comment.post_id) || root_path } #may fail if @comment did not have a post_id so failing to root_path
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +69,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:author, :post_id, :body, :email)
+      params.require(:comment).permit(:author, :post_id, :body, :email, :created_at, :updated_at)
     end
 end
