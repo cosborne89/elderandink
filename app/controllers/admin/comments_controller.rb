@@ -1,10 +1,14 @@
-class CommentsController < ApplicationController
+class Admin::CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
   def index
-    redirect_to "/posts/#{params[:post_id]}#comments"
+    if params[:post_id]
+      redirect_to "/posts/#{params[:post_id]}#comments"
+    else
+      @comments = Comment.all
+    end
   end
 
   # GET /comments/1
@@ -56,7 +60,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to admin_comments_url }
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,16 @@
+<div class="comment-count" >
+  <%= post.comments.count %> <%= plurality("Comment", post.comments.count) %>
+</div>
+<% post.comments.each do |comment| %>
+  <% unless comment.created_at.nil? %>
+    <div class="comment-block comment-<%=comment.id%>" >
+      <div class="comment-header" >
+        <%= comment.author %> on <%= comment.created_at.to_date.to_formatted_s(:long_ordinal)  %>:
+      </div>
+      <div class="comment-body" >
+        <%= comment.body %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<%= render 'shared/comment_form', post: post %>

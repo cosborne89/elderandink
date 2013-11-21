@@ -1,5 +1,13 @@
 Elderandink::Application.routes.draw do
-  resources :comments
+  namespace :admin do 
+    resources :tags, :series, :categories, :users, :comments
+    resources :posts do 
+      resources :comments
+      collection do 
+        get 'dashboard'
+      end 
+    end
+  end
 
   resources :tags
 

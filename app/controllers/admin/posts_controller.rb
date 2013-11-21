@@ -1,9 +1,14 @@
-class PostsController < ApplicationController
+class Admin::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
+    @q = Post.search(params[:q])
+    @posts = @q.result(distinct: true)
+  end
+
+  def dashboard
     @q = Post.search(params[:q])
     @posts = @q.result(distinct: true)
     @unpublished_posts = Post.unpublished
