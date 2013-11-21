@@ -12,20 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.input :title, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'} %>
   </div>
   <div class="field">
-    <%= f.label :banner_image %><br>
-    <%= f.number_field :banner_image %>
+      <%= f.input :banner_image, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'} %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.input :description, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'} %>
   </div>
   <div class="field">
-    <%= f.label :post_ids %><br>
-    <%= f.text_field :post_ids %>
+    <%= f.association :posts, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'} %>
   </div>
   <div class="actions">
     <%= f.submit %>
