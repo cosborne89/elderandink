@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @post] do |f| %>
+<%= simple_form_for [:admin, @post], :html => {:multipart => true} do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -15,7 +15,7 @@
     <%= f.input :title, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
   </div>
   <div class="field">
-    <%= f.input :body, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
+    <%= f.input :body, :as => :ckeditor, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width',  :ckeditor => {:toolbar => 'MyToolbar'}}  %>
   </div>
   <div class="field">
     <%= f.input :published%>
@@ -24,7 +24,8 @@
     <%= f.input :published_date, label_html: { class: 'label-block' } %>
   </div>
   <div class="field">
-    <%= f.input :title_image, label_html: { class: 'label-block' } %>
+    <%= f.input :title_image, :as => :file, label_html: { class: 'label-block' } %>
+
   </div>
   <div class="field">
     <%= f.association :tags, label_html: { class: 'label-block' } %>

@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -82,6 +83,6 @@ class Admin::PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :published, :published_date, :title_image, {:tag_ids => []}, :category_id, {:comment_ids => []}, :series_id)
+      params.require(:post).permit(:title, :body, :published, :published_date, :title_image, :title_image_file_name, :title_image_content_type, :title_image_file_size, :title_image_updated_at, {:tag_ids => []}, :category_id, {:comment_ids => []}, :series_id)
     end
 end

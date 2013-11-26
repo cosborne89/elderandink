@@ -17,7 +17,7 @@
   <div class="field">
     <%= f.input :email, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
   </div>
-  <%= @comment.post_id %>
+  <%= f.input :post_id, :as => :hidden, :input_html => { :value => post.id } %>
   <div class="field">
     <%= f.input :body, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
   </div>

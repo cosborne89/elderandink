@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 Go to comments: <%= link_to "Comments", post_path(@post, :anchor => "comments") %>
 <div class="post-title" >
   <h2><%= @post.title %></h2>
@@ -7,10 +6,10 @@ Go to comments: <%= link_to "Comments", post_path(@post, :anchor => "comments") 
   <%= @post.published_date.to_formatted_s(:long_ordinal)  %>
 </div>
 <div class="post-body" >
-  <%= @post.body %>
+  <%= raw @post.body %>
 </div>
   
-  <%= @post.title_image %>
+<%= image_tag @post.title_image.url %>
 
 <div class="post-tags" >
   Filed under 

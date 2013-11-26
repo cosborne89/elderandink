@@ -24,3 +24,10 @@ Landing page for Elder & Ink. Use the links to navigate.
 	<li><%= link_to "Series", new_admin_series_path %></li>
 	<li><%= link_to "Tag", new_admin_tag_path %></li>
 </ul>
+
+<% if current_user %>
+	<p>Logged in as <%= current_user.email %></p>
+	<p><%= button_to "Logout", logout_path, :method => :delete %></p>
+<% else %>
+	<p>Not logged in. <%= link_to "Log in", login_path %></p>
+<% end %>

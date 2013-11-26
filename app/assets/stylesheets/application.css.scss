@@ -38,3 +38,13 @@ aside {
 	@include span-columns(3 of 12);
 	float: right;
 }
+
+/* Banner styling */
+
+.banner > ul {
+	list-style-type: none;
+	li {
+		display: inline-block;
+	}
+}
+

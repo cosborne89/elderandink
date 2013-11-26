@@ -1,4 +1,5 @@
 class Admin::SeriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_series, only: [:show, :edit, :update, :destroy]
 
   # GET /series

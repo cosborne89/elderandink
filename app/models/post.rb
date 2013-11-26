@@ -6,6 +6,9 @@ class Post < ActiveRecord::Base
 
 	accepts_nested_attributes_for :comments
 
-	default_scope where(:published => true)
+	default_scope { where(published: true) }
 	scope :unpublished, -> { where(published: false) }
+
+	validates_presence_of :category_id
+	has_attached_file :title_image
 end

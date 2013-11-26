@@ -1,6 +1,6 @@
  class Admin::UsersController < ApplicationController
   #load_and_authorize_resource  #accomplishes the routing to match the user against the role and access but not used in devise/cancan 
-  before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!
 
 
   # GET /users

@@ -15,6 +15,10 @@
     @user = current_user
   end
 
+  def new
+    redirect_to new_user_registration_path
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -2,7 +2,7 @@
 <% posts.each do |post| %>
 <tr>
   <td><%= link_to post.title, post %></td>
-  <td><%= post.published_date.to_formatted_s(:long_ordinal) %></td>
+  <td><%= post.published_date%></td>
   <td>
     <% post.tags.each do |tag| %>
       <%= link_to tag.title, tag %><% if tag == post.tags.last %><% else %>, <% end %>
@@ -10,7 +10,7 @@
   </td>
   <td><%= link_to post.category.title, post.category %></td>
   <td><% if post.series %><%= link_to post.series.title, post.series %><% end %></td>
-  <td><%= post.comments.count %> <%= plurality("Comment", post.comments.count) %></td>
+  <td><%= post.comments.count %><%= plurality(" Comment", post.comments.count) %></td>
   <td><%= link_to 'Edit', edit_post_path(post) %></td>
 </tr>
 <% end %>

@@ -29,10 +29,12 @@
       <% end %>
       <div class="post-comments" >
         <%= post.comments.count %> <%= plurality("Comment", post.comments.count) %>
-      </div>  
-      <div class="edit-action" >
-        <%= link_to 'Edit', edit_post_path(post) %>
-      </div>  
+      </div>
+      <% if can? :update, Post %>
+        <div class="edit-action" >
+          <%= link_to 'Edit', edit_post_path(post) %>
+        </div>  
+      <% end %>
     </div>
   <% end %>
 <% end %>
