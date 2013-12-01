@@ -15,7 +15,7 @@
     <%= f.input :title, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'} %>
   </div>
   <div class="field">
-      <%= f.input :banner_image, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'} %>
+    <%= f.input :banner_image, :as => :file, label_html: { class: 'label-block' } %>
   </div>
   <div class="field">
     <%= f.input :description, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'} %>

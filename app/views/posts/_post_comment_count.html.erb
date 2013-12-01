@@ -1,0 +1,5 @@
+<div class="post-comments">
+  <%= link_to post_path(post, :anchor => "comments") do %>
+    <%= post.comments.count %> <%= plurality("Comment", post.comments.count) %>
+  <% end %>
+</div>

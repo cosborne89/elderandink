@@ -1,0 +1,31 @@
+<div class="post-block" >
+  <div class="post-title" >
+    <h2><%= link_to post.title, post %></h2>
+  </div>
+  <div class="post-date" >
+    <%= post.published_date.to_formatted_s(:long_ordinal) %> by Abbey in <%= link_to post.category.title, post.category %>
+  </div>
+  <div class="post-image" >
+    <%= render 'shared/if_image_exists', image: post.title_image %>
+  </div>  
+  <div class="post-body" >
+    <%= raw post.body %>
+  </div>  
+  <div class="post-tags" >
+    <% if post.tags.exists? %>
+      Filed under 
+      <% post.tags.each do |tag| %><%= link_to tag.title, tag %><% if tag == post.tags.last %>.<% else %>, <% end %><% end %>
+    <% end %>
+  </div>  
+  <% if post.series %>
+    <div class="post-series" >
+      Part of the <%= link_to post.series.title, post.series %> series.
+    </div>
+  <% end %>
+
+  <% if can? :update, Post %>
+    <div class="edit-action" >
+      <%= link_to 'Admin Edit Post', edit_post_path(post) %>
+    </div>  
+  <% end %>
+</div>

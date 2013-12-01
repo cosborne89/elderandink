@@ -4,26 +4,37 @@
   <title>Elder & Ink</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400,300|PT+Serif:400,700,400italic,700italic" %>
+  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:400,300|PT+Serif:400,700,400italic,700italic|Shadows+Into+Light" %>
   <%= csrf_meta_tags %>
   
 </head>
 <body>
-<div class="container">
-    <div class="banner">
-        <h1><%= link_to "Elder & Ink", root_path %></h1>
-        <ul>
-            <% @categories.each do |category| %>
-                <li><%= link_to category.title, category %></li>
-            <% end %>
-        </ul>
-        <p id="notice"><%= notice %></p>
-        <p id="alert"><%= alert %></p> 
-    </div>
-    <div class="primary-content" >
-        <%= yield %>
-    </div>
-
+<section class="container">
+  <div class="banner">
+      <div id="banner-logo">
+        <%= link_to root_path do %>
+          <%= image_tag "LOGO.jpg" %>
+        <% end %>
+      </div>
+      <div class='category-list'>
+          <% @categories.each do |category| %>
+              <div class="category-list-item"><h4><%= link_to category.title, category %></h4></div>
+          <% end %>
+      </div>
+      <p id="notice"><%= notice %></p>
+      <p id="alert"><%= alert %></p> 
+  </div>
+  <article class="primary-content" >
+      <%= yield %>
+  </article>
+  <aside>
+      <%= image_tag 'profile_thumb.png' %>
+      <div id="hello">
+        I'm Abbey, and this is my blog. I am out to change the world one cute, crafty or inspirational thing at a time.
+      </div>
+      <%= render "shared/search_container" %>
+      <%= render "layouts/dashboard_container" %>
+  </aside>
 </div>
 </body>
 </html>

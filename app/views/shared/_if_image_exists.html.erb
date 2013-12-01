@@ -1,0 +1,11 @@
+<% if warn %>
+	<% if image.exists? %>
+	  <%= image_tag image %>
+	<% else %>
+	  <p>No image found</p>
+	<% end %>
+<% else %>
+	<% if image.exists? %>
+	  <%= image_tag image %>
+	<% end %>
+<% end %>

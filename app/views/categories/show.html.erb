@@ -1,27 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-</p>
-
-<p>
-  <strong>Banner image:</strong>
-  <%= @category.banner_image %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
-
-<p>
-  <strong>Posts:</strong>
+<h2><%= @category.title %></h2>
+<%= render 'shared/if_image_exists', image: @category.banner_image, warn: true %>
+<p><%= @category.description %></p>
+<% unless @category.posts.blank? %>
   <% @category.posts.each do |post| %>
-    <ul>
-      <li><%= link_to post.title, post %></li>
-    </ul>
+    <%= render 'posts/post_block_thumb', post: post %>
   <% end %>
-</p>
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<% else %>
+	<p>No posts have been posted in this category yet. Return to the <%= link_to "home page", root_path %>.</p>
+<% end %>
+<% if can? :update, Category %>
+  <div class="clear"><%= link_to 'Edit Category', edit_category_path(@category) %></div>
+<% end %>

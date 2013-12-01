@@ -1,29 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @tag.title %>
-</p>
+<h2>Tag: <%= @tag.title %></h2>
 
-<p>
-  <strong>Banner image:</strong>
-  <%= @tag.banner_image %>
-</p>
+<%= render 'shared/if_image_exists', image: @tag.banner_image, warn: true %>
 
 <p>
   <strong>Description:</strong>
   <%= @tag.description %>
 </p>
 
-<p>
-  <strong>Posts:</strong>
-  <% @tag.posts.each do |post| %>
-    <ul>
-      <li><%= link_to post.title, post %></li>
-    </ul>
-  <% end %>
-</p>
-
+<% @tag.posts.paginate(:page => params[:page], :per_page => 3).each do |post| %>
+  <%= render 'posts/post_block', post: post %>
+  <%= render 'posts/post_comment_count', post: post %>
+<% end %>
+<%= will_paginate @tag.posts.paginate(:page => params[:page], :per_page => 3) %>
 
 <%= link_to 'Edit', edit_tag_path(@tag) %> |
 <%= link_to 'Back', tags_path %>

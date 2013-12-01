@@ -2,39 +2,7 @@
   Sorry, there aren't any posts with that search term. Try again?
 <% else %>
   <% @posts.each do |post| %>
-   <div class="post-block" >
-      <div class="post-title" >
-        <h2><%= link_to post.title, post %></h2>
-      </div>
-      <div class="post-date" >
-        <%= post.published_date.to_formatted_s(:long_ordinal) %>
-      </div>
-      <div class="post-image" >
-        <%= post.title_image %>
-      </div>  
-      <div class="post-body" >
-        <%= post.body %>
-      </div>  
-      <div class="post-tags" >
-        Filed under 
-          <% post.tags.each do |tag| %><%= link_to tag.title, tag %><% if tag == post.tags.last %>.<% else %>, <% end %><% end %>
-      </div>  
-      <div class="post-category" >
-        Posted in <%= link_to post.category.title, post.category %>
-      </div>
-      <% if post.series %>
-        <div class="post-series" >
-          Part of the <%= link_to post.series.title, post.series %> series.
-        </div>
-      <% end %>
-      <div class="post-comments" >
-        <%= post.comments.count %> <%= plurality("Comment", post.comments.count) %>
-      </div>
-      <% if can? :update, Post %>
-        <div class="edit-action" >
-          <%= link_to 'Edit', edit_post_path(post) %>
-        </div>  
-      <% end %>
-    </div>
+    <%= render 'posts/post_block', post: post %>
+    <%= render 'posts/post_comment_count', post: post %>
   <% end %>
 <% end %>

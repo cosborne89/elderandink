@@ -1,10 +1,5 @@
 <%= render "posts_container" %>
+<%= will_paginate @posts %>
 <% if can? :create, Post %>
 	<%= link_to 'New Post', new_post_path %>
 <% end %>
-</div>
-<aside>
-    I'm Abbey, and this is my blog. I am out to change the world one cute, crafty or inspirational thing at a time.
-    <%= render "shared/search_container" %>
-</aside>
-<div class="post-trick">

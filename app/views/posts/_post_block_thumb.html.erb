@@ -1,0 +1,10 @@
+<%= link_to post do %>
+  <div class="post-block-thumb" id="post-<%= post.id %>">
+    <div class="post-image" >
+     <%= render 'shared/if_image_exists', :image => post.title_image %>
+    </div>
+    <div class="post-title" >
+      <%= post.title %>
+    </div>
+  </div>
+<% end %>

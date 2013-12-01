@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @q = Post.search(params[:q])
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 3)
     @unpublished_posts = Post.unpublished
   end
 

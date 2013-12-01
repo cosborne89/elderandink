@@ -11,18 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126184441) do
+ActiveRecord::Schema.define(version: 20131129002815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
     t.string   "title"
-    t.integer  "banner_image"
     t.text     "description"
     t.string   "post_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "banner_image_file_name"
+    t.string   "banner_image_content_type"
+    t.integer  "banner_image_file_size"
+    t.datetime "banner_image_updated_at"
+    t.integer  "order"
   end
 
   create_table "comments", force: true do |t|
@@ -49,6 +53,7 @@ ActiveRecord::Schema.define(version: 20131126184441) do
     t.string   "title_image_content_type"
     t.integer  "title_image_file_size"
     t.datetime "title_image_updated_at"
+    t.boolean  "destroy_image"
   end
 
   create_table "posts_tags", force: true do |t|
@@ -60,20 +65,26 @@ ActiveRecord::Schema.define(version: 20131126184441) do
 
   create_table "series", force: true do |t|
     t.string   "title"
-    t.integer  "banner_image"
     t.text     "description"
     t.string   "post_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "banner_image_file_name"
+    t.string   "banner_image_content_type"
+    t.integer  "banner_image_file_size"
+    t.datetime "banner_image_updated_at"
   end
 
   create_table "tags", force: true do |t|
     t.string   "title"
-    t.integer  "banner_image"
     t.text     "description"
     t.string   "post_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "banner_image_file_name"
+    t.string   "banner_image_content_type"
+    t.integer  "banner_image_file_size"
+    t.datetime "banner_image_updated_at"
   end
 
   create_table "users", force: true do |t|

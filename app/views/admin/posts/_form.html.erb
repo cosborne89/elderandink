@@ -1,45 +1,51 @@
-<%= simple_form_for [:admin, @post], :html => {:multipart => true} do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="form-full-width-container">
+  <%= simple_form_for [:admin, @post], :html => {:multipart => true} do |f| %>
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.input :title, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
+    </div>
+    <% unless @post.title_image.exists? %>
+      <div class="field">
+        <%= f.input :title_image, :as => :file, label_html: { class: 'label-block' } %>
+      </div>
+    <% else %>
+      <div class="field">
+        <p>Current Image</p>
+        <%= image_tag @post.title_image %>
+        <%= f.input :destroy_image %>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.input :body, :as => :ckeditor, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width',  :ckeditor => {:toolbar => 'MyToolbar'}}  %>
+    </div>
+    <div class="field">
+      <%= f.input :published%>
+    </div>
+    <div class="field">
+      <%= f.input :published_date, label_html: { class: 'label-block' } %>
+    </div>
+    <div class="field">
+      <%= f.association :tags, label_html: { class: 'label-block' } %>
+    </div>
+    <div class="field">
+      <%= f.association :category, label_html: { class: 'label-block' } %>
+    </div>
+    <div class="field">
+      <%= f.association :series, label_html: { class: 'label-block' } %>
+    </div>
+    <div class="actions">
+      <%= f.button :submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.input :title, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width'}  %>
-  </div>
-  <div class="field">
-    <%= f.input :body, :as => :ckeditor, label_html: { class: 'label-block' }, input_html: { class: 'form-full-width',  :ckeditor => {:toolbar => 'MyToolbar'}}  %>
-  </div>
-  <div class="field">
-    <%= f.input :published%>
-  </div>
-  <div class="field">
-    <%= f.input :published_date, label_html: { class: 'label-block' } %>
-  </div>
-  <div class="field">
-    <%= f.input :title_image, :as => :file, label_html: { class: 'label-block' } %>
-
-  </div>
-  <div class="field">
-    <%= f.association :tags, label_html: { class: 'label-block' } %>
-  </div>
-  <div class="field">
-    <%= f.association :category, label_html: { class: 'label-block' } %>
-  </div>
-  <div class="field">
-    <%= f.association :comments, label_html: { class: 'label-block' } %>
-  </div>
-  <div class="field">
-    <%= f.association :series, label_html: { class: 'label-block' } %>
-  </div>
-  <div class="actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

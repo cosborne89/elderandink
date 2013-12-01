@@ -13,6 +13,7 @@
  */
 
 @import "bourbon";
+@import "grid-settings";
 @import "neat";
 
 /*All other stylesheets must be imported after this one */
@@ -22,29 +23,102 @@
     font-weight: 300;
 }
 
-div.container, div.banner {
+section {
     @include outer-container;
+	article {
+		@include span-columns(9 of 12);
+		@include media($mobile) {
+		  @include span-columns(4);
+		}
+	}
+	aside {
+		@include span-columns(3 of 12);
+		@include omega();
+		@include media($mobile) {
+		  @include span-columns(4);
+		}
+	}
 }
+
+
+$mobile: new-breakpoint(max-width 480px 4);
+
+.element {
+  @include media($mobile) {
+    @include span-columns(4);
+  }
+}
+
 
 .blue_button {
     @include button(simple, #0B7ABF);
 }
 
-.primary-content {
-	@include span-columns(8 of 12);
+.clear {
+	clear: both;
 }
 
-aside {
-	@include span-columns(3 of 12);
-	float: right;
+img {
+	max-width: 100%;
 }
 
-/* Banner styling */
 
-.banner > ul {
-	list-style-type: none;
-	li {
+/* Banner & Aside styling */
+
+.banner {
+	text-align: center;
+	border-bottom: 1px dotted;
+	border-color: grey;
+	margin-bottom: 2em;
+	.category-list .category-list-item {
 		display: inline-block;
+		padding: 0 1em 0 1em;
+
 	}
 }
 
+#banner-logo a {
+	text-decoration: none;
+	background: none;
+}
+
+#hello {
+	font-family: 'Shadows Into Light';
+	font-size: 1.2em;
+}
+
+/* Category styling */
+
+.post-block-thumb {
+	@include span-columns(2 of 8);
+	display: inline-block;
+	margin: 1em;
+	.post-title {
+		text-align: center;
+	}
+	.post-image {
+		
+	}
+}
+
+/* Page styling */
+
+#post-navigation {
+	margin: 1em 0 1em 0;
+	min-width: 100%;
+	@include outer-container;
+	.nav-block {
+		display: inline-block;
+		@include span-columns(3);
+	}
+	.left {
+		@include span-columns(4);
+	}
+	.right {
+		float: right;
+		text-align: right;
+	}
+	.center {
+		text-align: center;
+	}
+}

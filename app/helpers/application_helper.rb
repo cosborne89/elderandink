@@ -11,4 +11,10 @@ module ApplicationHelper
     text = text.upcase if text_case_holder == text_case_holder.upcase
     text #the last line is the output of the function, so it can't be the evaluation above.
    end
+
+  def is_admin(user)
+    if user.role == "admin" || user.role == "superadmin"
+      true
+    end
+  end
 end

@@ -5,10 +5,11 @@
   <%= @category.title %>
 </p>
 
-<p>
-  <strong>Banner image:</strong>
-  <%= @category.banner_image %>
-</p>
+<% unless @category.banner_image_file_size == nil %>
+  <%= image_tag @category.banner_image %>
+<% else %>
+  <p>"No image found"</p>
+<% end %>
 
 <p>
   <strong>Description:</strong>

@@ -1,28 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @series.title %>
-</p>
+<h2>Series: <%= @series.title %></h2>
 
-<p>
-  <strong>Banner image:</strong>
-  <%= @series.banner_image %>
-</p>
+<%= render 'shared/if_image_exists', image: @series.banner_image, warn: true %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @series.description %>
-</p>
+<%= @series.description %>
 
-<p>
-  <strong>Posts:</strong>
-  <% @series.posts.each do |post| %>
-    <ul>
-      <li><%= link_to post.title, post %></li>
-    </ul>
-  <% end %>
-</p>
+<% @series.posts.paginate(:page => params[:page], :per_page => 3).each do |post| %>
+  <%= render 'posts/post_block', post: post %>
+  <%= render 'posts/post_comment_count', post: post %>
+<% end %>
+<%= will_paginate @series.posts.paginate(:page => params[:page], :per_page => 3) %>
 
 <%= link_to 'Edit', edit_series_path(@series) %> |
 <%= link_to 'Back', series_index_path %>
